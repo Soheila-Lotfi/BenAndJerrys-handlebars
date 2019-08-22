@@ -1,5 +1,5 @@
 var express = require("express");
-var exphdb = require("express-handelbars");
+var exphbs = require("express-handlebars");
 
 // create an instance of express
 var app = express();
@@ -24,3 +24,23 @@ var icecreams = [
   { name: "jawbreakers", price: 6, awesomeness: 2 },
   { name: "pistachio", price: 11, awesomeness: 15 }
 ];
+
+// create a route called `/icecream/:name`.
+//When the route is hit, it will display the name, price and awesomeness for that specific ice cream.
+
+app.get("/icecream/:name", function(req, res) {
+  var icecreamName = req.params.name;
+  for (i = 0; i < icecreams.length; i++) {
+    if (icecreams[i].name === icecreamName) {
+      res.render("icecream", icecreams[i]);
+    }
+  }
+});
+
+// start the saerver
+
+app.listen(PORT, function() {
+  console.log("the server is listening on: " + PORT);
+});
+
+// * Create an `/icecreams` route. It will loop over all the ice creams and display them all to the user.
