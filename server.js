@@ -37,10 +37,14 @@ app.get("/icecream/:name", function(req, res) {
   }
 });
 
+// * Create an `/icecreams` route. It will loop over all the ice creams and display them all to the user.
+
+app.get("/icecreams", function(req, res) {
+  res.render("all-icecreams", { icecream: icecreams });
+});
+
 // start the saerver
 
 app.listen(PORT, function() {
   console.log("the server is listening on: " + PORT);
 });
-
-// * Create an `/icecreams` route. It will loop over all the ice creams and display them all to the user.
